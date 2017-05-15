@@ -1,0 +1,39 @@
+Alimentación 3.3 V
+
+Configuración Bluetooth HC-06 Esclavo:
+Por definición viene a 9600,1,0
+Contraseña para emparejar con dispositivos 1234
+Asegurarse que no está emparejado con un maestro HC-05
+
+Configuración Bluetooth HC-05 Maestro
+Dejar presionado el botón del componente
+Conectar a la compu con USB-TTL
+Ver que parpadea lentamente (modo AT)
+Abrir teraterm, baud rate 38400 (modo AT)
+Ya puede comenzar a recibir comandos (modo AT):
+
+*****************************************************************************************
+
+AT //tienes que recibir OK para comprobar funcionamiento del componente en modo AT
+AT+UART=9600,1,0 //Configurando baud rate a 9600, 1 stop bit, sin paridad
+AT+ROLE //Checar si está en modo maestro (role=1) o modo esclavo (role=0)
+AT+ROLE=1 //Configurando HC-05 en modo maestro
+//No se puede buscar al modulo (en celular, etc.)cuando está en modo maestro
+AT+ORGL //Resetear modulo, modo esclavo, nombre "hc01.com HC-05", baud rate 38400
+//para emparejar con celular, contraseña 1234
+AT+PSWD=2222 //para cambiar esa contraseña
+//cuando está reseteado, abrir BlueTerm/BluetoothSPPpro escribir algo y se verá en terminal de computadora
+
+Mac Address HC-05: 20:16:11:07:62:63 //Maestro/Esclavo
+Mac Address HC-06: 98:D3:31:20:6C:59 //Esclavo
+
+//Para ver mac address emparejar con celular, y buscar dispositivo en BlueTerm
+
+Para emparejar con esclavo HC-06 usar su mac addres en el siguiente formato:
+AT+BIND=98D3,31,206C59
+
+*****************************************************************************************
+
+Otros comandos importantes:
+AT+NAME //Cambiar nombre
+
